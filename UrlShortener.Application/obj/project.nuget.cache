@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "dgSpecHash": "zg/kumUVZDU=",
+  "success": true,
+  "projectFilePath": "/Users/mcaleg2006/RiderProjects/UrlShortener/backend/UrlShortener.Application/UrlShortener.Application.csproj",
+  "expectedPackageFiles": [
+    "/Users/mcaleg2006/.nuget/packages/csharpfunctionalextensions/3.7.0/csharpfunctionalextensions.3.7.0.nupkg.sha512",
+    "/Users/mcaleg2006/.nuget/packages/fluentvalidation/12.1.1/fluentvalidation.12.1.1.nupkg.sha512",
+    "/Users/mcaleg2006/.nuget/packages/fluentvalidation.dependencyinjectionextensions/12.1.1/fluentvalidation.dependencyinjectionextensions.12.1.1.nupkg.sha512",
+    "/Users/mcaleg2006/.nuget/packages/microsoft.extensions.caching.abstractions/10.0.0/microsoft.extensions.caching.abstractions.10.0.0.nupkg.sha512",
+    "/Users/mcaleg2006/.nuget/packages/microsoft.extensions.caching.memory/10.0.0/microsoft.extensions.caching.memory.10.0.0.nupkg.sha512",
+    "/Users/mcaleg2006/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/10.0.0/microsoft.extensions.dependencyinjection.abstractions.10.0.0.nupkg.sha512",
+    "/Users/mcaleg2006/.nuget/packages/microsoft.extensions.logging.abstractions/10.0.0/microsoft.extensions.logging.abstractions.10.0.0.nupkg.sha512",
+    "/Users/mcaleg2006/.nuget/packages/microsoft.extensions.options/10.0.0/microsoft.extensions.options.10.0.0.nupkg.sha512",
+    "/Users/mcaleg2006/.nuget/packages/microsoft.extensions.primitives/10.0.0/microsoft.extensions.primitives.10.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,12 @@
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Shared/bin/Debug/net10.0/UrlShortener.Shared.deps.json
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Shared/bin/Debug/net10.0/UrlShortener.Shared.dll
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Shared/bin/Debug/net10.0/UrlShortener.Shared.pdb
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Shared/obj/Debug/net10.0/UrlShortener.Shared.csproj.AssemblyReference.cache
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Shared/obj/Debug/net10.0/UrlShortener.Shared.GeneratedMSBuildEditorConfig.editorconfig
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Shared/obj/Debug/net10.0/UrlShortener.Shared.AssemblyInfoInputs.cache
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Shared/obj/Debug/net10.0/UrlShortener.Shared.AssemblyInfo.cs
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Shared/obj/Debug/net10.0/UrlShortener.Shared.csproj.CoreCompileInputs.cache
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Shared/obj/Debug/net10.0/UrlShortener.Shared.dll
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Shared/obj/Debug/net10.0/refint/UrlShortener.Shared.dll
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Shared/obj/Debug/net10.0/UrlShortener.Shared.pdb
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Shared/obj/Debug/net10.0/ref/UrlShortener.Shared.dll

@@ -1,0 +1,17 @@
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Application/bin/Debug/net10.0/UrlShortener.Application.deps.json
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Application/bin/Debug/net10.0/UrlShortener.Application.dll
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Application/bin/Debug/net10.0/UrlShortener.Application.pdb
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Application/bin/Debug/net10.0/UrlShortener.Domain.dll
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Application/bin/Debug/net10.0/UrlShortener.Shared.dll
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Application/bin/Debug/net10.0/UrlShortener.Domain.pdb
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Application/bin/Debug/net10.0/UrlShortener.Shared.pdb
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Application/obj/Debug/net10.0/UrlShortener.Application.csproj.AssemblyReference.cache
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Application/obj/Debug/net10.0/UrlShortener.Application.GeneratedMSBuildEditorConfig.editorconfig
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Application/obj/Debug/net10.0/UrlShortener.Application.AssemblyInfoInputs.cache
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Application/obj/Debug/net10.0/UrlShortener.Application.AssemblyInfo.cs
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Application/obj/Debug/net10.0/UrlShortener.Application.csproj.CoreCompileInputs.cache
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Application/obj/Debug/net10.0/UrlShort.95A5A48A.Up2Date
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Application/obj/Debug/net10.0/UrlShortener.Application.dll
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Application/obj/Debug/net10.0/refint/UrlShortener.Application.dll
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Application/obj/Debug/net10.0/UrlShortener.Application.pdb
+/Users/mcaleg2006/RiderProjects/UrlShortener/UrlShortener.Application/obj/Debug/net10.0/ref/UrlShortener.Application.dll

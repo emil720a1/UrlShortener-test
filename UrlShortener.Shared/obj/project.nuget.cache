@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "BeO4IFY+YkA=",
+  "success": true,
+  "projectFilePath": "/Users/mcaleg2006/RiderProjects/UrlShortener/backend/UrlShortener.Shared/UrlShortener.Shared.csproj",
+  "expectedPackageFiles": [
+    "/Users/mcaleg2006/.nuget/packages/csharpfunctionalextensions/3.7.0/csharpfunctionalextensions.3.7.0.nupkg.sha512",
+    "/Users/mcaleg2006/.nuget/packages/fluentvalidation/12.1.1/fluentvalidation.12.1.1.nupkg.sha512",
+    "/Users/mcaleg2006/.nuget/packages/fluentvalidation.dependencyinjectionextensions/12.1.1/fluentvalidation.dependencyinjectionextensions.12.1.1.nupkg.sha512",
+    "/Users/mcaleg2006/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/2.1.0/microsoft.extensions.dependencyinjection.abstractions.2.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}
