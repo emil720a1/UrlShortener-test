@@ -15,6 +15,7 @@ public static class DependencyInjection
             options.UseNpgsql(connectionString));
         
         services.AddScoped<IUrlRepository, UrlRepository>();
+        services.AddScoped<IAboutRepository, Repositories.AboutRepository>();
         
         return services;
     }

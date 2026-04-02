@@ -1,35 +1,29 @@
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using UrlShortener.Application.DTO_s.UserDto_s;
-using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
+using UrlShortener.Web.Services;
+using Microsoft.AspNetCore.Identity;
 
 namespace UrlShortener.Web.Controllers;
-
 
 [ApiController]
 [Route("api/[controller]")]
 public class AuthController : ControllerBase
 {
     private readonly UserManager<IdentityUser> _userManager;
-    private readonly IConfiguration _configuration;
+    private readonly IJwtService _jwtService;
 
-    public AuthController(UserManager<IdentityUser> userManager, IConfiguration configuration)
+    public AuthController(UserManager<IdentityUser> userManager, IJwtService jwtService)
     {
         _userManager = userManager;
-        _configuration = configuration;
+        _jwtService = jwtService;
     }
-    
+
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterDto request)
     {
         var user = new IdentityUser { UserName = request.Email, Email = request.Email };
         var result = await _userManager.CreateAsync(user, request.Password);
-        
+
         if (!result.Succeeded)
             return BadRequest(result.Errors);
 
@@ -39,36 +33,22 @@ public class AuthController : ControllerBase
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginDto request)
     {
-       var user = await _userManager.FindByEmailAsync(request.Email);
-       
-       if (user == null || !await _userManager.CheckPasswordAsync(user, request.Password))
-           return Unauthorized(new {Message = "Неправильний email або пароль." });
-       
-       var token = GenerateJwtToken(user);
-       
-       return Ok(new { Token = token });
-    }
+        var user = await _userManager.FindByEmailAsync(request.Email);
 
-    private string GenerateJwtToken(IdentityUser user)
-    {
-        var jwtSettings = _configuration.GetSection("Jwt");
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Key"]!));
-        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+        if (user == null || !await _userManager.CheckPasswordAsync(user, request.Password))
+            return Unauthorized(new { Message = "Неправильний email або пароль." });
 
-        var claims = new[]
+        var roles = await _userManager.GetRolesAsync(user);
+        var token = await _jwtService.GenerateTokenAsync(user);
+
+        Response.Cookies.Append("jwt", token, new CookieOptions
         {
-            new Claim(JwtRegisteredClaimNames.Sub, user.Id),
-            new Claim(JwtRegisteredClaimNames.Email, user.Email),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-        };
-        var token = new JwtSecurityToken(
-            issuer: jwtSettings["Issuer"],
-            audience: jwtSettings["Audience"],
-            claims: claims,
-            expires: DateTime.Now.AddMinutes(30),
-            signingCredentials: creds
-        );
-        
-        return new JwtSecurityTokenHandler().WriteToken(token);
+            HttpOnly = true,
+            Expires = DateTime.UtcNow.AddDays(1),
+            SameSite = SameSiteMode.Lax,
+            Secure = false // TODO: set to true in production (HTTPS only)
+        });
+
+        return Ok(new { Token = token, Roles = roles, UserId = user.Id });
     }
 }

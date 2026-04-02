@@ -12,8 +12,8 @@ using UrlShortener.Infrastructure;
 namespace UrlShortener.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260401193712_AddIdentityTables")]
-    partial class AddIdentityTables
+    [Migration("20260402153359_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

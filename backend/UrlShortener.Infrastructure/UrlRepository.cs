@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using UrlShortener.Application;
-using UrlShortener.Domain;
 using UrlShortener.Domain.Entities;
 
 namespace UrlShortener.Infrastructure;
@@ -23,14 +22,17 @@ public class UrlRepository : IUrlRepository
 
     public async Task<IEnumerable<UrlRecord>> GetAllAsync() => 
         await _context.Urls.OrderByDescending(u => u.CreatedAt).ToListAsync();
+        
+    public async Task<IEnumerable<UrlRecord>> GetAllByUserIdAsync(string userId) =>
+        await _context.Urls.Where(u => u.CreatedByUserId == userId).OrderByDescending(u => u.CreatedAt).ToListAsync();
     
     public async Task AddAsync(UrlRecord urlRecord) =>
         await _context.Urls.AddAsync(urlRecord);
 
-    public async Task DeleteAsync(UrlRecord urlRecord)
+    public Task DeleteAsync(UrlRecord urlRecord)
     {
         _context.Urls.Remove(urlRecord);
-        await Task.CompletedTask;
+        return Task.CompletedTask;
     }
 
     public async Task SaveChangesAsync() =>

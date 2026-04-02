@@ -7,6 +7,7 @@ using Scalar.AspNetCore;
 using UrlShortener.Application;
 using UrlShortener.Infrastructure;
 using UrlShortener.Web.Middlewares;
+using UrlShortener.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,8 @@ builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 
 builder.Services.AddControllers();
+builder.Services.AddRazorPages();
+builder.Services.AddScoped<IJwtService, JwtService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApi();
@@ -50,6 +53,17 @@ builder.Services.AddAuthentication(options =>
             ValidAudience = jwtSettings["Audience"],
             IssuerSigningKey = new SymmetricSecurityKey(key)
         };
+        options.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                if (context.Request.Cookies.ContainsKey("jwt"))
+                {
+                    context.Token = context.Request.Cookies["jwt"];
+                }
+                return Task.CompletedTask;
+            }
+        };
     });
 
 builder.Services.AddCors(options =>{
@@ -67,6 +81,34 @@ builder.Services.AddProblemDetails();
 builder.Services.AddMemoryCache();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    
+    dbContext.Database.Migrate();
+
+    if (!roleManager.RoleExistsAsync("Admin").GetAwaiter().GetResult())
+        roleManager.CreateAsync(new IdentityRole("Admin")).GetAwaiter().GetResult();
+        
+    var adminEmail = "admin@inforce.com";
+    if (userManager.FindByEmailAsync(adminEmail).GetAwaiter().GetResult() == null)
+    {
+        var user = new IdentityUser { UserName = adminEmail, Email = adminEmail };
+        var result = userManager.CreateAsync(user, "Admin123!").GetAwaiter().GetResult();
+        if (result.Succeeded)
+            userManager.AddToRoleAsync(user, "Admin").GetAwaiter().GetResult();
+    }
+
+    if (!dbContext.AboutContent.Any())
+    {
+        dbContext.AboutContent.Add(new UrlShortener.Domain.Entities.AboutContent(
+            "This URL Shortener uses a Base64-like algorithm to generate unique, short, and memorable 6-character codes for your long URLs. It provides secure, fast, and efficient redirection."));
+        dbContext.SaveChanges();
+    }
+}
 
 if (app.Environment.IsDevelopment())
 {
@@ -91,5 +133,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapRazorPages();
 
 app.Run();
