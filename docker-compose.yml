@@ -6,11 +6,43 @@ services:
     environment:
       - POSTGRES_DB=UrlShortenerDb
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=my_secret_password 
+      - POSTGRES_PASSWORD=my_secret_password
     ports:
       - "5440:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: UrlShortener.Web/Dockerfile
+    container_name: url_shortener_api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=UrlShortenerDb;Username=postgres;Password=my_secret_password
+    ports:
+      - "5121:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        - VITE_API_URL=http://localhost:5121/api
+    container_name: url_shortener_ui
+    ports:
+      - "5173:5173"
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - backend
 
 volumes:
   postgres_data:
